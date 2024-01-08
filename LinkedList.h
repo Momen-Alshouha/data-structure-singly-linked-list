@@ -23,7 +23,15 @@ public:
 
 	LinkedList() : _Head(nullptr), _Tail(nullptr) {};
 
+	Node<T>* Find(T DataToFind) {
 
+		for (Iterator<T> itr = _begin(); itr != _end();itr.next()) {
+			if (itr.data==DataToFind)
+			{
+				return itr.current_node;
+			}
+		}
+	}
 
 	void InsertBegin(T DataToInsert) {
 		Node<T>* NewNode = new(nothrow) Node<T>(DataToInsert);
