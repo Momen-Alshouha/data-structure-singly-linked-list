@@ -44,6 +44,25 @@ public:
 		}
 	}
 
+	void InsertEnd(T DataToInsert) {
+		Node<T>* NewNode = new(nothrow) Node<T>(DataToInsert);
+
+		if (NewNode==nullptr)
+		{
+			cout << "Error Throw Memory Allocation!\n";
+		}
+		else {
+			if (_Head==nullptr)
+			{
+				_Head = _Tail = NewNode;
+			}
+			else {
+				_Tail->_ptrNext = NewNode;
+				_Tail = NewNode;
+			}
+		}
+	}
+
 	void print() {
 		if (_Head == nullptr) {
 			cout << "Linked List Is Empty!\n";

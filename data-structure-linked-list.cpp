@@ -3,9 +3,11 @@
 
 int main()
 {
-	LinkedList<> list;
-	list.InsertBegin(1);
-	list.InsertBegin(2);
+	LinkedList<string> list;
+	list.InsertEnd("end");
+	list.InsertBegin("Ahmad");
+	list.InsertBegin("mohammed");
+	list.InsertEnd("hani");
 	list.print();
 	
 }
