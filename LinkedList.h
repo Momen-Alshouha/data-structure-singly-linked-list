@@ -10,7 +10,17 @@ private:
 	Node<T>* _Tail = nullptr;
 
 public:
-	
+
+	LinkedList() : _Head(nullptr), _Tail(nullptr) {};
+
+	Iterator<T> begin() {
+		return Iterator<T>(_Head);
+	}
+
+	Iterator<T> end() {
+		return Iterator<T>(_Tail->next());
+	}
+
 
 };
 
