@@ -35,7 +35,7 @@ public:
 
     // properties
     __declspec(property(get = GetData, put = SetData)) T data;
-    __declspec(property(get = GetNext, put = SetNext)) Node<T>* next;
+    __declspec(property(get = GetNext, put = SetNext)) Node<T>* _ptrNext;
 
 };
 

@@ -19,17 +19,26 @@ public:
 		_CurrentNode = CurrentNode;
 	}
 
-	T data()
+	T GetData()
 	{
 		return _CurrentNode->data;
 	}
 
-	void next() {
-		_CurrentNode = _CurrentNode->next();
+	void SetData(T Data) {
+		_CurrentNode->data = Data;
 	}
 
-	Node<T> GetCurrentNode() {
+	void next() {
+		_CurrentNode = _CurrentNode->_ptrNext;
+	}
+
+	Node<T>* GetCurrentNode() {
 		return _CurrentNode;
 	}
 
+	bool operator!=(const Iterator& other) const {
+		return _CurrentNode != other._CurrentNode;
+	}
+
+	__declspec(property(get = GetData ,put = SetData)) T data;
 };
