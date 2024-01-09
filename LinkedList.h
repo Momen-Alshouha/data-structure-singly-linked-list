@@ -25,7 +25,7 @@ private:
 public:
 
 	LinkedList() : _Head(nullptr), _Tail(nullptr) {
-		_length = _Length();
+		_length = GetLength();
 	};
 
 	Node<T>* GetHead() {
@@ -53,6 +53,17 @@ public:
 			}
 		}
 		return length;
+	}
+
+	Node<T>* FindByIndex(short index) {
+		short counter = 0;
+		for (Iterator<T> itr = _begin(); itr != _end(); itr.next()) {
+			if (counter==index) {
+				return itr.current_node;
+			}
+			counter++;
+		}
+		return nullptr;
 	}
 
 
