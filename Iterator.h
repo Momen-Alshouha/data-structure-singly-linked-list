@@ -28,9 +28,16 @@ public:
 		_CurrentNode->data = Data;
 	}
 
-	void next() {
-		_CurrentNode = _CurrentNode->_ptrNext;
+	Node<T>* next() {
+		if (_CurrentNode != nullptr) {
+			_CurrentNode = _CurrentNode->_ptrNext;
+			return _CurrentNode;
+		}
+		else {
+			return nullptr;
+		}
 	}
+
 
 	Node<T>* GetCurrentNode() {
 		return _CurrentNode;

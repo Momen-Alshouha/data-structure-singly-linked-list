@@ -11,7 +11,6 @@ private:
 
 public:
 
-
     Node(T Data) : _Data(Data), _ptrToNextNode(nullptr) {}
 
     T GetData()
@@ -23,9 +22,14 @@ public:
     {
         _Data = Data;
     }
- 
+
     Node<T>* GetNext() {
-        return _ptrToNextNode;
+        if (_ptrToNextNode != nullptr) {
+            return _ptrToNextNode;
+        }
+        else {
+            return nullptr; 
+        }
     }
 
     void SetNext(Node<T>* ptrNext) {

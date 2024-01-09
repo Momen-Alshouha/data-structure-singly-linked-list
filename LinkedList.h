@@ -23,15 +23,78 @@ public:
 
 	LinkedList() : _Head(nullptr), _Tail(nullptr) {};
 
-	Node<T>* Find(T DataToFind) {
-
-		for (Iterator<T> itr = _begin(); itr != _end();itr.next()) {
-			if (itr.data==DataToFind)
-			{
-				return itr.current_node;
+	bool Find(T DataToFind, Node<T>*& FoundNode) {
+		for (Iterator<T> itr = _begin(); itr != _end(); itr.next()) {
+			if (itr.data == DataToFind) {
+				FoundNode = itr.current_node;
+				return true;
 			}
 		}
+		FoundNode = nullptr;
+		return false;
 	}
+
+	void InsertAfter(T DataToInsertAfter, T DataToInsert) {
+
+		Node<T>* NodeToInsertAfter = new Node<T>(DataToInsertAfter);
+
+		bool IsExist = Find(DataToInsertAfter, NodeToInsertAfter);
+
+		if (!IsExist) {
+			cout << "Data To Insert Before Not Found!\n";
+			return;
+		}
+
+		Node<T>* NewNode = new (nothrow) Node<T>(DataToInsert);
+
+		if (NewNode == nullptr) {
+			cout << "Error Throw Memory Allocation!\n";
+			return;
+		}
+
+		NewNode->_ptrNext = NodeToInsertAfter->_ptrNext;
+		NodeToInsertAfter->_ptrNext = NewNode;
+
+		if (NodeToInsertAfter==_Tail)
+		{
+			_Tail = NewNode;
+		}
+	}
+
+
+
+
+	void InsertBefore(T DataToInsertBefore, T DataToInsert) {
+		Node<T>* currentNode = _Head;
+		Node<T>* prevNode = nullptr;
+
+		while (currentNode != nullptr && currentNode->data != DataToInsertBefore) {
+			prevNode = currentNode;
+			currentNode = currentNode->_ptrNext;
+		}
+
+		if (currentNode == nullptr) {
+			cout << "Data To Insert Before Not Found!\n";
+			return;
+		}
+
+		Node<T>* newNode = new (nothrow) Node<T>(DataToInsert);
+		
+		if (newNode == nullptr) {
+			cout << "Error Thrown: Memory Allocation!\n";
+			return;
+		}
+
+		newNode->_ptrNext = currentNode;
+		if (prevNode == nullptr) {
+			_Head = newNode;
+		}
+		else {
+			prevNode->_ptrNext = newNode;
+		}
+	}
+
+
 
 	void InsertBegin(T DataToInsert) {
 		Node<T>* NewNode = new(nothrow) Node<T>(DataToInsert);
