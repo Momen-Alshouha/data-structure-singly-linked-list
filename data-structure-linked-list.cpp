@@ -11,5 +11,6 @@ int main()
 
 	list.InsertAfter(1, 5);
 	list.InsertBefore(5, 10);
+	
 	list.print();
 }

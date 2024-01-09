@@ -134,6 +134,19 @@ public:
 		}
 	}
 
+	void DeleteFirstNode() {
+		if (_Head==nullptr)
+		{
+			cout << "Linkedlist is empty!\n";
+			return;
+		}
+		else {
+			Node<T>* Temp = _Head;
+			_Head = _Head->_ptrNext;
+			delete Temp;
+		}
+	}
+
 	void print() {
 		if (_Head == nullptr) {
 			cout << "Linked List Is Empty!\n";
