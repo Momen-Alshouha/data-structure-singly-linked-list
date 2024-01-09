@@ -11,6 +11,8 @@ private:
 	
 	Node<T>* _Tail = nullptr;
 
+	short _length;
+
 	Iterator<T> _begin() {
 		return Iterator<T>(_Head);
 	}
@@ -19,9 +21,12 @@ private:
 		return Iterator<T>(_Tail->_ptrNext);
 	}
 
+
 public:
 
-	LinkedList() : _Head(nullptr), _Tail(nullptr) {};
+	LinkedList() : _Head(nullptr), _Tail(nullptr) {
+		_length = _Length();
+	};
 
 	Node<T>* GetHead() {
 		return _Head;
@@ -31,8 +36,25 @@ public:
 		return _Tail;
 	}
 
+	__declspec(property(get = GetLength)) short length;
 	__declspec(property(get = GetHead)) Node<T>* head;
 	__declspec(property(get = GetTail)) Node<T>* tail;
+
+	short GetLength() {
+		short length = 0;
+		if (_Head == nullptr)
+		{
+			return length;
+		}
+		else {
+			for (Iterator<T> itr = _begin(); itr != _end(); itr.next())
+			{
+				length++;
+			}
+		}
+		return length;
+	}
+
 
 	bool Find(T DataToFind) {
 		for (Iterator<T> itr = _begin(); itr != _end(); itr.next()) {

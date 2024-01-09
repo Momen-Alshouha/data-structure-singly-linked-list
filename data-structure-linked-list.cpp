@@ -12,9 +12,10 @@ int main()
 	list.InsertAfter(1, 5);
 	list.InsertBefore(5, 10);
 	list.DeleteLastNode();
-	list.DeleteNode(4);
-	list.DeleteNode(10);
-	list.DeleteNode(2);
+
 	
+	list.print();
+
+	cout<<list.length;
 
 }
