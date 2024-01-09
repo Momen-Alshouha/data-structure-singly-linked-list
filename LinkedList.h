@@ -147,6 +147,45 @@ public:
 		}
 	}
 
+	Node<T>* FindParentNode(Node<T>* NodeToFindParent) {
+		if (_Head == nullptr || NodeToFindParent == _Head) {
+			return nullptr;
+		}
+
+		Node<T>* currentNode = _Head;
+
+		// Traverse the list to find the parent of the given node
+		while (currentNode != nullptr && currentNode->_ptrNext != NodeToFindParent) {
+			currentNode = currentNode->_ptrNext;
+		}
+
+		return currentNode;
+	}
+
+	void DeleteLastNode() {
+		if (_Head == nullptr) {
+			cout << "Linkedlist is empty!\n";
+			return;
+		}
+		else if (_Head->_ptrNext == nullptr) {
+			// If there's only one node in the list
+			delete _Head;
+			_Head = _Tail = nullptr;
+			return;
+		}
+
+		Node<T>* TailParent = FindParentNode(_Tail);
+
+		if (TailParent == nullptr) {
+			cout << "Unable to find parent of tail!\n";
+			return;
+		}
+
+		delete _Tail;
+		TailParent->_ptrNext= nullptr;
+		_Tail = TailParent;
+	}
+
 	void print() {
 		if (_Head == nullptr) {
 			cout << "Linked List Is Empty!\n";
