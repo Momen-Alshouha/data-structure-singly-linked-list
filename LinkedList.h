@@ -23,6 +23,26 @@ public:
 
 	LinkedList() : _Head(nullptr), _Tail(nullptr) {};
 
+	Node<T>* GetHead() {
+		return _Head;
+	}
+
+	Node<T>* GetTail() {
+		return _Tail;
+	}
+
+	__declspec(property(get = GetHead)) Node<T>* head;
+	__declspec(property(get = GetTail)) Node<T>* tail;
+
+	bool Find(T DataToFind) {
+		for (Iterator<T> itr = _begin(); itr != _end(); itr.next()) {
+			if (itr.data == DataToFind) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	bool Find(T DataToFind, Node<T>*& FoundNode) {
 		for (Iterator<T> itr = _begin(); itr != _end(); itr.next()) {
 			if (itr.data == DataToFind) {
@@ -32,6 +52,21 @@ public:
 		}
 		FoundNode = nullptr;
 		return false;
+	}
+
+	Node<T>* FindParentNode(Node<T>* NodeToFindParent) {
+		if (_Head == nullptr || NodeToFindParent == _Head) {
+			return nullptr;
+		}
+
+		Node<T>* currentNode = _Head;
+
+		// Traverse the list to find the parent of the given node
+		while (currentNode != nullptr && currentNode->_ptrNext != NodeToFindParent) {
+			currentNode = currentNode->_ptrNext;
+		}
+
+		return currentNode;
 	}
 
 	void InsertAfter(T DataToInsertAfter, T DataToInsert) {
@@ -147,19 +182,31 @@ public:
 		}
 	}
 
-	Node<T>* FindParentNode(Node<T>* NodeToFindParent) {
-		if (_Head == nullptr || NodeToFindParent == _Head) {
-			return nullptr;
+	void DeleteNode(T DataToDelete) {
+		Node<T>* NodeToDelete = nullptr;
+		Find(DataToDelete, NodeToDelete);
+		if (NodeToDelete==nullptr)
+		{
+			cout << "Node Not Found!\n";
 		}
-
-		Node<T>* currentNode = _Head;
-
-		// Traverse the list to find the parent of the given node
-		while (currentNode != nullptr && currentNode->_ptrNext != NodeToFindParent) {
-			currentNode = currentNode->_ptrNext;
+		else {
+			if (NodeToDelete == _Head)
+			{
+				Node<T>* temp= _Head->_ptrNext;
+				delete _Head;
+				_Head = temp;
+			}
+			else if (NodeToDelete==_Tail) {
+				Node<T>* tailParent = FindParentNode(_Tail);
+				delete _Tail;
+				_Tail = tailParent;
+			}
+			else {
+				Node<T>* NodeParent = FindParentNode(NodeToDelete);
+				NodeParent->_ptrNext = NodeToDelete->_ptrNext;
+				delete NodeToDelete;
+			}
 		}
-
-		return currentNode;
 	}
 
 	void DeleteLastNode() {
