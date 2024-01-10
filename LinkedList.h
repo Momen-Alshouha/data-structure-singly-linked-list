@@ -202,6 +202,41 @@ public:
 		}
 	}
 
+	void InsertAtIndex(short index,T valueToInsert) {
+		short counter = 0;
+		if (index>this->length || index<0)
+		{
+			cout << "cant insert at index : " << index << endl;;
+			return; 
+		}
+		else if (index==0)
+		{
+			InsertBegin(valueToInsert);
+			return;
+		}
+		else if (index==length) {
+			InsertEnd(valueToInsert);
+		}
+		else {
+			Node <T>* NewNode = new Node<T>(valueToInsert);
+			// 1- find parent index if index 3 find parent in 2
+			Node<T>* ParentNode = _Head;
+			short counter = 0;
+			// Traverse the list to find the parent of the node given value
+			while (ParentNode != nullptr) {
+				if (counter==index-1)
+				{
+					break;
+				}
+				ParentNode = ParentNode->_ptrNext;
+				counter++;
+			}
+			Node<T>* Temp = ParentNode;
+			NewNode->_ptrNext = ParentNode->_ptrNext;
+			ParentNode->_ptrNext = NewNode;
+		}
+	}
+
 	void DeleteFirstNode() {
 		if (_Head==nullptr)
 		{
