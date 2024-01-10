@@ -39,6 +39,23 @@ public:
 	__declspec(property(get = GetLength)) short length;
 	__declspec(property(get = GetHead)) Node<T>* head;
 	__declspec(property(get = GetTail)) Node<T>* tail;
+	
+	// get sum if template type is arithmetic 
+	// this will not work if linkedlist holds strings
+	template <typename U = T>
+	typename enable_if<is_arithmetic<U>::value, int>::type GetSum() {
+		short sum = 0;
+
+		if (_Head == nullptr) {
+			return sum;
+		}
+		else {
+			for (Iterator<T> itr = _begin(); itr != _end(); itr.next()) {
+				sum += itr.current_node->data;
+			}
+		}
+		return sum;
+	}
 
 	short GetLength() {
 		short length = 0;
@@ -337,6 +354,7 @@ public:
 		this->_Tail = linkedlist._Tail;
 		return this;
 	}
+
 
 	void print() {
 		if (_Head == nullptr) {

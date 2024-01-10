@@ -3,12 +3,17 @@
 
 int main()
 {
-	LinkedList<int> list1,list2;
+	LinkedList<int> list;
 
-	list1.InsertBegin(10);
-	list1.Contact(list2);
 
-	list1.print();
+	list.InsertEnd(5);
+	
+	list.InsertEnd(6);
+	
+	list.print();
+
+	cout << list.GetSum() << endl;;
+
 
 	
 
