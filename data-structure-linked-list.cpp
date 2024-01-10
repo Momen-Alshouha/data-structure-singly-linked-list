@@ -3,17 +3,12 @@
 
 int main()
 {
-	LinkedList<int> list;
-	list.InsertBegin(1);
-	list.InsertBegin(2);
-	list.InsertBegin(3);
-	list.InsertBegin(4);
+	LinkedList<int> list1,list2;
 
-	list.InsertAfter(1, 5);
-	list.DeleteLastNode();
-	list.InsertAtIndex(1,99);
-	list.DeleteAtIndex(5);
-	list.print();
+	list1.InsertBegin(10);
+	list1.Contact(list2);
+
+	list1.print();
 
 	
 

@@ -324,6 +324,20 @@ public:
 		}
 	}
 
+	LinkedList<T>* Contact(LinkedList<T> linkedlist) {
+		if (linkedlist._Head==nullptr)
+		{
+			return this;
+		}
+		else if(this->_Head==nullptr) {
+			*this = linkedlist;
+			return this;
+		}
+		this->_Tail->_ptrNext = linkedlist._Head;
+		this->_Tail = linkedlist._Tail;
+		return this;
+	}
+
 	void print() {
 		if (_Head == nullptr) {
 			cout << "Linked List Is Empty!\n";
