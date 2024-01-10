@@ -12,6 +12,7 @@ int main()
 	list.InsertAfter(1, 5);
 	list.DeleteLastNode();
 	list.InsertAtIndex(1,99);
+	list.DeleteAtIndex(5);
 	list.print();
 
 	

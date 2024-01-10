@@ -87,6 +87,18 @@ public:
 		return false;
 	}
 
+	Node<T>* FindParentNode(short index) {
+		short counter = 0;
+		for (Iterator<T> itr = _begin(); itr!=_end(); itr.next())
+		{
+			if (index-1 == counter)
+			{
+				return itr.current_node;
+			}
+			counter++;
+		}
+	}
+
 	Node<T>* FindParentNode(Node<T>* NodeToFindParent) {
 		if (_Head == nullptr || NodeToFindParent == _Head) {
 			return nullptr;
@@ -219,19 +231,7 @@ public:
 		}
 		else {
 			Node <T>* NewNode = new Node<T>(valueToInsert);
-			// 1- find parent index if index 3 find parent in 2
-			Node<T>* ParentNode = _Head;
-			short counter = 0;
-			// Traverse the list to find the parent of the node given value
-			while (ParentNode != nullptr) {
-				if (counter==index-1)
-				{
-					break;
-				}
-				ParentNode = ParentNode->_ptrNext;
-				counter++;
-			}
-			Node<T>* Temp = ParentNode;
+			Node<T>* ParentNode = FindParentNode(index);
 			NewNode->_ptrNext = ParentNode->_ptrNext;
 			ParentNode->_ptrNext = NewNode;
 		}
@@ -299,6 +299,29 @@ public:
 		delete _Tail;
 		TailParent->_ptrNext= nullptr;
 		_Tail = TailParent;
+	}
+
+
+	void DeleteAtIndex(short index) {
+		if (index==length || index<0)
+		{
+			return;
+		}
+		if (index==0)
+		{
+			this->DeleteFirstNode();
+			return;
+		}
+		else if (index==length-1) {
+			DeleteLastNode();
+		}
+		else
+		{
+			Node<T>* ParentNode = FindParentNode(index);
+			Node<T>* NodeToDelete = FindByIndex(index);
+			ParentNode->_ptrNext = NodeToDelete->_ptrNext;
+			delete NodeToDelete;
+		}
 	}
 
 	void print() {
