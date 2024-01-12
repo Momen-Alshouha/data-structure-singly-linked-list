@@ -1,6 +1,6 @@
 # Singly Linked List Implementation in C++
 
-This repository contains a basic implementation of a singly linked list using C++ and Object-Oriented Programming principles.
+This repository contains an implementation of a singly linked list using C++ and Object-Oriented Programming principles.
 
 ## Overview
 
@@ -47,7 +47,8 @@ To use this singly linked list implementation, follow these steps:
 #include "LinkedList.h"
 
 int main() {
-    LinkedList<int> myList;
+    LinkedList<int> myIntsList; // list of integers
+    LinkedList<string> myStringsList; // list of strings
     
     // Perform operations like insertion, deletion, and retrieval here
     
