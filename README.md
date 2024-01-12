@@ -47,7 +47,8 @@ To use this singly linked list implementation, follow these steps:
 #include "LinkedList.h"
 
 int main() {
-    LinkedList<int> myList;
+    LinkedList<int> myIntsList; // list of integers
+    LinkedList<string> myStringsList; // list of strings
     
     // Perform operations like insertion, deletion, and retrieval here
     
