@@ -24,9 +24,7 @@ private:
 
 public:
 
-	LinkedList() : _Head(nullptr), _Tail(nullptr) {
-		_length = GetLength();
-	};
+	LinkedList() : _Head(nullptr), _Tail(nullptr), _length(0) {};
 
 	Node<T>* GetHead() {
 		return _Head;
@@ -156,6 +154,7 @@ public:
 		{
 			_Tail = NewNode;
 		}
+		_length++;
 	}
 
 
@@ -189,6 +188,7 @@ public:
 		else {
 			prevNode->_ptrNext = newNode;
 		}
+		_length++;
 	}
 
 
@@ -209,6 +209,7 @@ public:
 				NewNode->_ptrNext = _Head;
 				_Head = NewNode;
 			}
+			_length++;
 		}
 	}
 
@@ -228,6 +229,7 @@ public:
 				_Tail->_ptrNext = NewNode;
 				_Tail = NewNode;
 			}
+			_length++;
 		}
 	}
 
@@ -252,6 +254,7 @@ public:
 			NewNode->_ptrNext = ParentNode->_ptrNext;
 			ParentNode->_ptrNext = NewNode;
 		}
+		_length++;
 	}
 
 	void DeleteFirstNode() {
@@ -265,6 +268,7 @@ public:
 			_Head = _Head->_ptrNext;
 			delete Temp;
 		}
+		_length--;
 	}
 
 	void DeleteNode(T DataToDelete) {
@@ -292,6 +296,7 @@ public:
 				delete NodeToDelete;
 			}
 		}
+		_length--;
 	}
 
 	void DeleteLastNode() {
@@ -316,6 +321,7 @@ public:
 		delete _Tail;
 		TailParent->_ptrNext= nullptr;
 		_Tail = TailParent;
+		_length--;
 	}
 
 
@@ -339,6 +345,7 @@ public:
 			ParentNode->_ptrNext = NodeToDelete->_ptrNext;
 			delete NodeToDelete;
 		}
+		_length--;
 	}
 
 	LinkedList<T>* Contact(LinkedList<T> linkedlist) {
@@ -352,6 +359,7 @@ public:
 		}
 		this->_Tail->_ptrNext = linkedlist._Head;
 		this->_Tail = linkedlist._Tail;
+		_length += linkedlist.length;
 		return this;
 	}
 

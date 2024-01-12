@@ -14,7 +14,13 @@ int main()
 
 	cout << list.GetSum() << endl;;
 
+	list.DeleteFirstNode();
 
+	list.print();
+
+	list.DeleteFirstNode();
+
+	cout << list.length << endl;
 	
 
 }
