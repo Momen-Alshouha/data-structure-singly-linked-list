@@ -1,6 +1,6 @@
 # Singly Linked List Implementation in C++
 
-This repository contains a basic implementation of a singly linked list using C++ and Object-Oriented Programming principles.
+This repository contains an implementation of a singly linked list using C++ and Object-Oriented Programming principles.
 
 ## Overview
 
